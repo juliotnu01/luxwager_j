@@ -13,7 +13,7 @@
     <div class="modal-content" style="    width: 1324px; position: relative; right: 360px;">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title text-info text-center">BANCA</h2>
+        <h2 class="modal-title text-info text-center">BANCO</h2>
       </div>
       <div class="modal-body" >
       	<table class="table table-bordered">
@@ -32,11 +32,13 @@
       				<td>monto deposito</td>
       				<td>usuario</td>
       				<td>fecha registro</td>
+              <td>Confirmar Deposito</td>
       				
       			</tr>
       		</thead>
       		<tbody>
-      		<tr>
+              <?php while ($row = mysqli_fetch_assoc($depositos)){?>
+          <tr>  
       				<td><?php echo $row['nombre']; ?></td>
       				<td><?php echo $row['apellido']; ?></td>
       				<td><?php echo $row['edad']; ?></td>
@@ -50,8 +52,10 @@
       				<td><?php echo $row['montodeposito']; ?></td>
       				<td><?php echo $row['usuario']; ?></td>	
       				<td><?php echo $row['fecharegistro']; ?></td>
-      				
-      		</tr>
+              <td><button class="btn btn-default">Aprobar</button></td>
+              
+          </tr>
+              <?php } ?>
       	</tbody>
       	</table>
       <div class="modal-footer" >

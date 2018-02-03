@@ -2,14 +2,9 @@
 include 'conexion.php';
 session_name("loginUsuario"); 
 session_start();
-$_SESSION['usuario'];
 
-$sql1 = "SELECT * FROM usuario";
-$SelecUsuario = mysqli_query($conexion,$sql1);
-$row = mysqli_fetch_array($SelecUsuario);
-var_dump($row);
 
-if ($row['nombre'] = $_SESSION['usuario']) {
+if (isset($_SESSION['id_usuario'])) {
 	
 	$nombre = $_POST['nombre'];
 	$apellido = $_POST['apellido'];
@@ -20,7 +15,7 @@ if ($row['nombre'] = $_SESSION['usuario']) {
 	$banco = $_POST['banco'];
 	$fecha = $_POST['fecha'];
 	$hora = $_POST['hora'];
-	$usuario = $row['id'];
+	$usuario = $_SESSION['id_usuario'];
 	$numCuenta = $_POST['numCuenta'];
 	$montodeposito = $_POST['montodeposito'];
 
@@ -52,8 +47,9 @@ if ($row['nombre'] = $_SESSION['usuario']) {
 
 	$registroDeposito = mysqli_query($conexion, $sql);
 
-	if ($registroDeposito) {
-		echo "Depositado";
+
+	if ($registroDeposito = true) {
+		header ("Location: dashboard.php"); 
 	}else{
 		var_dump($registroDeposito, $sql);
 	}
