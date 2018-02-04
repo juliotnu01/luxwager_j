@@ -13,12 +13,12 @@
     <div class="modal-content" style="    width: 1324px; position: relative; right: 360px;">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title text-info text-center">BANCA</h2>
+        <h2 class="modal-title text-info text-center">BANCO</h2>
       </div>
       <div class="modal-body" >
       	<table class="table table-bordered">
       		<thead>
-      			<tr>
+      			<tr style="text-align: center" >
       				<td>nombre</td>
       				<td>apellido</td>
       				<td>edad</td>
@@ -32,11 +32,24 @@
       				<td>monto deposito</td>
       				<td>usuario</td>
       				<td>fecha registro</td>
+              <td>Confirmar Deposito</td>
+              
       				
       			</tr>
       		</thead>
       		<tbody>
-      		<tr>
+              <?php 
+
+                $sqldepositos = "SELECT round(SUM(deposito.montodeposito), 2) d FROM deposito";
+                $depositos = mysqli_query($conexion,$sqldepositos);
+                $totaldepositos = mysqli_fetch_assoc($depositos);
+
+                $sql = "SELECT * FROM deposito";
+                $depositos = mysqli_query($conexion,$sql);
+
+                while ($row = mysqli_fetch_assoc($depositos)) {
+                ?>
+          <tr style="font-size: small;   text-align: center">
       				<td><?php echo $row['nombre']; ?></td>
       				<td><?php echo $row['apellido']; ?></td>
       				<td><?php echo $row['edad']; ?></td>
@@ -50,8 +63,15 @@
       				<td><?php echo $row['montodeposito']; ?></td>
       				<td><?php echo $row['usuario']; ?></td>	
       				<td><?php echo $row['fecharegistro']; ?></td>
-      				
+      				<td><form method="POST" action="aprobar.php"> 
+                <input type="hidden" name="aprobar" value="1">
+                <input type="hidden" name="usr" value="<?php echo $_SESSION['id_usuario'] ; ?>"> 
+                <input type="hidden" name="monto" value="<?php echo $row['montodeposito']; ?>">
+
+                <input class="btn btn-success" type="submit" >
+              </form></td>
       		</tr>
+          <?php } ?>
       	</tbody>
       	</table>
       <div class="modal-footer" >
@@ -63,7 +83,7 @@
       		</thead>
       		<tbody>
       			<tr>
-      				<td class="text-danger"><strong> <?php echo $rowdepositos['d']; ?> </strong></td>
+      				<td class="text-danger"><strong> <?php echo $totaldepositos['d']; ?> </strong></td>
       			</tr>
       		</tbody>
       	</table>

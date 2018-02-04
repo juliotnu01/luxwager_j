@@ -1,4 +1,4 @@
-x <?php include 'conexion.php';
+<?php include 'conexion.php';
 session_name("loginUsuario"); 
 session_start(); 
 	$fechaGuardada = $_SESSION["ultimoAcceso"]; 
@@ -8,25 +8,15 @@ session_start();
       session_unset(); 
       session_destroy(); // destruyo la sesión 
      echo "<script>alert('Sesion expirada por favor re-ingrese en su cuenta'); window.location.href = '../index.php'</script>";
-     //si pasaron 10 minutos o más
-      //sino, actualizo la fecha de la sesión 
+     //si pasaron 60 minutos o más
     }else { 
+      //sino, actualizo la fecha de la sesión 
     $_SESSION["ultimoAcceso"] = $ahora; 	
-   }
-
-   $sql = "SELECT * FROM deposito";
-   $depositos = mysqli_query($conexion,$sql);
-   $row = mysqli_fetch_array($depositos);
-
-   $sqlJugada ="SELECT * FROM jugada;";
-   $jugada = mysqli_query($conexion, $sqlJugada);
-   $rowJugada = mysqli_fetch_array($jugada);
-
-   $sqldepositos = "SELECT round(SUM(deposito.montodeposito), 4) d FROM deposito";
-   $depositos = mysqli_query($conexion,$sqldepositos);
-   $rowdepositos = mysqli_fetch_array($depositos);
-
-    
+   }  
+        $idUsr = $_SESSION['id_usuario'];
+        $sqlCoins = "SELECT round(SUM(deposito.montodeposito), 2) coins FROM deposito WHERE usuario =  $idUsr AND aprobar = 1";
+        $coins = mysqli_query($conexion,$sqlCoins);
+        $rowCoins = mysqli_fetch_assoc($coins);
   ?>
 
 <!DOCTYPE html>
@@ -45,7 +35,7 @@ session_start();
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h4><?php echo  "Usuario: " . $_SESSION['usuario']  ; ?></h4>
+      <h4><?php echo  "Usuario: " . $_SESSION['nombre_usuario']  ; ?></h4>
       <ul class="nav nav-pills nav-stacked">
         <li><button class="btn btn-danger col-sm-12" data-toggle="modal" data-target="#cajero">CAJERO</button></li>
         <br><br> 
@@ -67,7 +57,7 @@ session_start();
 
     <div class="col-sm-9">
 		<h1 class="jumbotron"><?php echo APP;  ?> </h1>
-		<h4 class="text-left"> <?php echo " Coins: ". $row['montodeposito'];  ?>  </h4  > 
+		<h4 class="text-left"> <?php echo " Coins: ". $rowCoins['coins'];  ?>  </h4  > 
       <?php include 'jugadas.php'; ?>
     </div>
   </div>

@@ -2,14 +2,13 @@
 include 'conexion.php';
 session_name("loginUsuario"); 
 session_start();
-$_SESSION['usuario'];
 
 $sql1 = "SELECT * FROM usuario";
 $SelecUsuario = mysqli_query($conexion,$sql1);
-$row = mysqli_fetch_array($SelecUsuario);
+$row = mysqli_fetch_assoc($SelecUsuario);
 var_dump($row);
 
-if ($row['nombre'] = $_SESSION['usuario']) {
+if ($row['nombre'] = $_SESSION['nombre_usuario']) {
 	
 	$nombre = $_POST['nombre'];
 	$apellido = $_POST['apellido'];
@@ -20,7 +19,7 @@ if ($row['nombre'] = $_SESSION['usuario']) {
 	$banco = $_POST['banco'];
 	$fecha = $_POST['fecha'];
 	$hora = $_POST['hora'];
-	$usuario = $row['id'];
+	$usuario = $_SESSION['id_usuario'];
 	$numCuenta = $_POST['numCuenta'];
 	$montodeposito = $_POST['montodeposito'];
 
@@ -53,10 +52,11 @@ if ($row['nombre'] = $_SESSION['usuario']) {
 	$registroDeposito = mysqli_query($conexion, $sql);
 
 	if ($registroDeposito) {
-		echo "Depositado";
-	}else{
-		var_dump($registroDeposito, $sql);
+		header("location: dashboard.php");
 	}
+}else{
+echo "<script>alert('Ha ocurrido un problema vuelva a inicar sesion'); window.location.href = '../index.php'</script>";
+} 
 
-}
+	
  ?>

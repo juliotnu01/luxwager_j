@@ -1,12 +1,7 @@
 <?php 
-	
-	$sqlJuego = "SELECT id From jugada";
-	$juego = mysqli_query($conexion,$sqlJuego);
-	$juegos = mysqli_fetch_array($juego);
-
-	foreach ($juegos as $apuestas) {
-		
-	
+	$sqlJugada ="SELECT * FROM jugada;";
+   $jugada = mysqli_query($conexion, $sqlJugada);	
+	while ($rowJugada = mysqli_fetch_assoc($jugada)) {
 
  ?>
   
@@ -14,10 +9,10 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" href="#asd">NBA (<?php echo $rowJugada['equipo_1']; ?> - Vs - <?php echo $rowJugada['equipo_2']; ?></a>
+          <a data-toggle="collapse" href="#<?php echo $rowJugada['id'];?>">NBA (<?php echo $rowJugada['equipo_1']; ?> - Vs - <?php echo $rowJugada['equipo_2']; ?>)</a>
         </h4>
       </div>
-      <div id="asd" class="panel-collapse collapse">
+      <div id="<?php echo $rowJugada['id'];?>" class="panel-collapse collapse">
         <ul class="list-group">
           <table class="table-bordered col-sm-12">
 			<thead>
