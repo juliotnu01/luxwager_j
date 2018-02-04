@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-
 <div id="deposito" class="modal fade"  role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content" style="    width: 1324px; position: relative; right: 360px;">
+    <div class="modal-content" style=" width: 1324px; position: relative; right: 360px;">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h2 class="modal-title text-info text-center">BANCO</h2>
@@ -33,8 +25,6 @@
       				<td>usuario</td>
       				<td>fecha registro</td>
               <td>Confirmar Deposito</td>
-              
-      				
       			</tr>
       		</thead>
       		<tbody>
@@ -72,7 +62,8 @@
               </form></td>
       		</tr>
           <?php } ?>
-      	</tbody>
+              <td><button class="btn btn-default">Aprobar</button></td>
+          </tbody>
       	</table>
       <div class="modal-footer" >
       	<table class="table-bordered pull-right">

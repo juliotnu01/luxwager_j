@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -9,7 +8,9 @@
   <script src="bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
   <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-	<?php include 'php/conexion.php'; ?>
+	<?php 
+	include 'php/conexion.php';
+	 ?>
 </head>
 <body>	
 	<div class="container">
@@ -34,4 +35,3 @@
 <?php include './php/modal-registro.php' ?>
 
 </body>
-</html>

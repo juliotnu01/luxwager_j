@@ -22,7 +22,7 @@
             	<input type="text" name="equipo_1" class="form-control" placeholder="Equipo">
           	</div>
       		<div class="form-group col-lg-">
-            	<input type="text" name="dinero_1" class="form-control" value="<?php echo $rowJugada['dinero_1']; ?>" placeholder="M.Line">
+            	<input type="text" name="dinero_1" class="form-control"  placeholder="M.Line">
           	</div>
           	<div class="form-group col-lg-">
             	<input type="text" name="spread_1" class="form-control" placeholder="spread">
@@ -72,7 +72,7 @@
             	<input type="text" name="equipo_2" class="form-control" placeholder="Equipo">
           	</div>
           		<div class="form-group col-lg-">
-            	<input type="text" name="dinero_2" class="form-control" value="<?php echo $rowJugada['dinero_2']; ?>" placeholder="M.Line">
+            	<input type="text" name="dinero_2" class="form-control" placeholder="M.Line">
           	</div>
           	<div class="form-group col-lg-">
             	<input type="text" name="spread_2" class="form-control" placeholder="spread">

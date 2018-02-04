@@ -7,8 +7,8 @@ $sql1 = "SELECT * FROM usuario";
 $SelecUsuario = mysqli_query($conexion,$sql1);
 $row = mysqli_fetch_assoc($SelecUsuario);
 var_dump($row);
-
-if ($row['nombre'] = $_SESSION['nombre_usuario']) {
+		
+if (isset($_SESSION['id_usuario'])) {
 	
 	$nombre = $_POST['nombre'];
 	$apellido = $_POST['apellido'];
@@ -51,6 +51,7 @@ if ($row['nombre'] = $_SESSION['nombre_usuario']) {
 
 	$registroDeposito = mysqli_query($conexion, $sql);
 
+
 	if ($registroDeposito) {
 		header("location: dashboard.php");
 	}
@@ -58,5 +59,4 @@ if ($row['nombre'] = $_SESSION['nombre_usuario']) {
 echo "<script>alert('Ha ocurrido un problema vuelva a inicar sesion'); window.location.href = '../index.php'</script>";
 } 
 
-	
  ?>

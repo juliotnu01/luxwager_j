@@ -9,14 +9,17 @@ session_start();
       session_destroy(); // destruyo la sesión 
      echo "<script>alert('Sesion expirada por favor re-ingrese en su cuenta'); window.location.href = '../index.php'</script>";
      //si pasaron 60 minutos o más
+
     }else { 
       //sino, actualizo la fecha de la sesión 
     $_SESSION["ultimoAcceso"] = $ahora; 	
+
    }  
         $idUsr = $_SESSION['id_usuario'];
         $sqlCoins = "SELECT round(SUM(deposito.montodeposito), 2) coins FROM deposito WHERE usuario =  $idUsr AND aprobar = 1";
         $coins = mysqli_query($conexion,$sqlCoins);
         $rowCoins = mysqli_fetch_assoc($coins);
+
   ?>
 
 <!DOCTYPE html>
@@ -57,7 +60,9 @@ session_start();
 
     <div class="col-sm-9">
 		<h1 class="jumbotron"><?php echo APP;  ?> </h1>
+
 		<h4 class="text-left"> <?php echo " Coins: ". $rowCoins['coins'];  ?>  </h4  > 
+
       <?php include 'jugadas.php'; ?>
     </div>
   </div>
@@ -72,3 +77,4 @@ session_start();
 
 </body>
 </html>
+

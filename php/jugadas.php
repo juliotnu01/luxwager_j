@@ -1,6 +1,6 @@
 <?php 
 	$sqlJugada ="SELECT * FROM jugada;";
-   $jugada = mysqli_query($conexion, $sqlJugada);	
+   	$jugada = mysqli_query($conexion, $sqlJugada);	
 	while ($rowJugada = mysqli_fetch_assoc($jugada)) {
 
  ?>
