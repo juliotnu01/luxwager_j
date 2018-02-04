@@ -62,7 +62,6 @@
               </form></td>
       		</tr>
           <?php } ?>
-              <td><button class="btn btn-default">Aprobar</button></td>
           </tbody>
       	</table>
       <div class="modal-footer" >
