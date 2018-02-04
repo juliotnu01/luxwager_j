@@ -10,7 +10,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content" style="    width: 1324px; position: relative; right: 360px;">
+    <div class="modal-content" style=" width: 1324px; position: relative; right: 360px;">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h2 class="modal-title text-info text-center">BANCO</h2>
@@ -37,7 +37,14 @@
       			</tr>
       		</thead>
       		<tbody>
-              <?php while ($row = mysqli_fetch_assoc($depositos)){?>
+              <?php
+                    $sqlTotalDepositos = "SELECT SUM(deposito.montodeposito) d FROM deposito";
+                    $totalDepositos = mysqli_query($conexion, $sqlTotalDepositos);
+                    $rowdepositos = mysqli_fetch_assoc($totalDepositos) ;
+                // muestra los depositos registrados por el usuario
+                  $sqldepositosRegistrados = "SELECT * FROM deposito";
+                  $depositos = mysqli_query($conexion,$sqldepositosRegistrados);
+                  while ($row = mysqli_fetch_assoc($depositos)){?>
           <tr>  
       				<td><?php echo $row['nombre']; ?></td>
       				<td><?php echo $row['apellido']; ?></td>

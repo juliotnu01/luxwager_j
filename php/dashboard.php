@@ -8,23 +8,19 @@ session_start();
       session_unset(); 
       session_destroy(); // destruyo la sesión 
      echo "<script>alert('Sesion expirada por favor re-ingrese en su cuenta'); window.location.href = '../index.php'</script>";
-     //si pasaron 10 minutos o más
+     //si pasaron 60 minutos o más
       //sino, actualizo la fecha de la sesión 
     }else { 
     $_SESSION["ultimoAcceso"] = $ahora; 	
    }
-    // muestra los depositos registrados por el usuario
-   $sqldepositosRegistrados = "SELECT * FROM deposito";
-   $depositos = mysqli_query($conexion,$sqldepositosRegistrados); 
-
    //muestra las jugadas emitidas por el admin
    $sqlJugada ="SELECT * FROM jugada ;";
    $jugadas = mysqli_query($conexion, $sqlJugada);
 
+
+   //calcula los coins de cada usuario 
    $idUsr = $_SESSION['id_usuario'];
    $sqlCoins = "SELECT round(SUM(deposito.montodeposito), 4) coins FROM deposito WHERE usuario = '$idUsr'  ";
-
-   // $sqldepositos = "SELECT round(SUM(deposito.montodeposito), 4) d FROM deposito";
    $depositos = mysqli_query($conexion,$sqlCoins);
    $rowdepositosUsr = mysqli_fetch_array($depositos);
 

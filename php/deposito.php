@@ -3,7 +3,7 @@ include 'conexion.php';
 session_name("loginUsuario"); 
 session_start();
 
-
+		
 if (isset($_SESSION['id_usuario'])) {
 	
 	$nombre = $_POST['nombre'];
@@ -48,11 +48,11 @@ if (isset($_SESSION['id_usuario'])) {
 	$registroDeposito = mysqli_query($conexion, $sql);
 
 
-	if ($registroDeposito = true) {
-		header ("Location: dashboard.php"); 
-	}else{
-		var_dump($registroDeposito, $sql);
+	if ($registroDeposito) {
+		header("Location: dashboard.php"); 
 	}
 
-}
+}else{
+		echo "<script>alert('Ha ocurrido un error tienes que volver a inicar sesion'); window.location.href= 'logout.php';</script>";
+	}
  ?>
